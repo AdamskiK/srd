@@ -6,6 +6,7 @@ library("caret")
 library("dplyr")
 library("rpart")
 library("rpart.plot")
+library("Hmisc")
 
 data <- read.csv('data/final_data.csv')
 
@@ -32,15 +33,15 @@ for(col in factor_columns){
 
 
 # divide the dataset (train/test)
-reduced_data <- reduced_data[, !(names(reduced_data)) %in% c("Application_ID")]  # remove unnecesary columns
-train_data <- reduced_data[which(!is.na(reduced_data$DefFlag)), ]
-test_data <- reduced_data[which(is.na(reduced_data$DefFlag)), ]
+reduced_data_cleaned <- reduced_data[, !(names(reduced_data)) %in% c("Application_ID")]  # remove unnecesary columns
+train_data <- reduced_data_cleaned[which(!is.na(reduced_data_cleaned$DefFlag)), ]
+test_data <- reduced_data_cleaned[which(is.na(reduced_data_cleaned$DefFlag)), ]
 
 
 ## MODELS
 
 # run model 1
-RpartModel(train_data, cp=0.0003)
+RpartModel(reduced_data, train_data, cp=0.0003)
 
 # run model 2
 # CaretModel(train_data)  # need more enhancements
