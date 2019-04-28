@@ -3,8 +3,6 @@ CreatureFeatures <- function(data) {
   data$MonthlyCreditIncome <- data$Monthly_Income/data$Credit_amount
   data$ChildPerCreditValue <- as.numeric(data$Household_children/data$Credit_amount)
   # data$AverageIncomePerCredit <- data$Average_income/data$Credit_amount
-  data$Total_spending <- data$Spending_clothing + data$Spending_clothing + data$Spending_footwear + data$Spending_household + data$Spending_glassware 
-  + data$Spending_personal_care + data$Spending_personal_care + data$Spending_catering + data$Spending_electronics + data$Spending_recreational_and_cultural
   data$Total_spending <- data$Spending_clothing + data$Spending_footwear + data$Spending_household + data$Spending_glassware 
   + data$Spending_personal_care + data$Spending_catering + data$Spending_electronics + data$Spending_recreational_and_cultural
   data$AgeBucket1 <- ifelse(data$Age < 20, 1, 0)
